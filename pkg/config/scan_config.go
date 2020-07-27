@@ -16,6 +16,7 @@ const (
 	JobResultTimeout  = "JOB_RESULT_TIMEOUT"
 	KlarImageName     = "KLAR_IMAGE_NAME"
 	DeleteJobPolicy   = "DELETE_JOB_POLICY"
+	DockerInsecure    = "DOCKER_INSECURE"
 )
 
 type ScanConfig struct {
@@ -26,6 +27,7 @@ type ScanConfig struct {
 	IgnoredNamespaces  []string
 	JobResultTimeout   time.Duration
 	DeleteJobPolicy    DeleteJobPolicyType
+	DockerInsecure     string
 }
 
 func setScanConfigDefaults() {
@@ -36,6 +38,7 @@ func setScanConfigDefaults() {
 	viper.SetDefault(KlarImageName, "gcr.io/development-infra-208909/klar")
 	viper.SetDefault(JobResultTimeout, "10m")
 	viper.SetDefault(DeleteJobPolicy, DeleteJobPolicySuccessful)
+	viper.SetDefault(DockerInsecure, "false")
 
 	viper.AutomaticEnv()
 }
@@ -51,6 +54,7 @@ func LoadScanConfig() *ScanConfig {
 		IgnoredNamespaces:  strings.Split(viper.GetString(IgnoreNamespaces), ","),
 		JobResultTimeout:   viper.GetDuration(JobResultTimeout),
 		DeleteJobPolicy:    getDeleteJobPolicyType(viper.GetString(DeleteJobPolicy)),
+		DockerInsecure:     viper.GetString(DockerInsecure),
 	}
 }
 

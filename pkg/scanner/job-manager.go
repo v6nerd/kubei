@@ -240,6 +240,7 @@ func (s *Scanner) createContainer(imageName, secretName string, scanUUID string)
 		{Name: "KLAR_TRACE", Value: strconv.FormatBool(s.config.KlarTrace)},
 		{Name: "RESULT_SERVICE_PATH", Value: s.config.KlarResultServicePath},
 		{Name: "SCAN_UUID", Value: scanUUID},
+		{Name: "DOCKER_INSECURE", Value: s.scanConfig.DockerInsecure},
 	}
 
 	env = s.appendProxyEnvConfig(env)
