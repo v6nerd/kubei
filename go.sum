@@ -48,8 +48,12 @@ github.com/OpenPeeDeeP/depguard v1.0.0/go.mod h1:7/4sitnI9YlQgTLLk734QlzXT8DuHVn
 github.com/OpenPeeDeeP/depguard v1.0.1/go.mod h1:xsIw86fROiiwelg+jB2uM9PiKihMMmUx/1V+TNhjQvM=
 github.com/Portshift/dockle v0.3.2-0.20201118172756-4889c8016f40 h1:YgPrnc/dfNPGcKp1Df9vaYyzVDEerZfvJoeUFvzeCi0=
 github.com/Portshift/dockle v0.3.2-0.20201118172756-4889c8016f40/go.mod h1:5wZk3T5uw7bqyyIynaMot4PUqWyqIgyY8IIgnnUmSTM=
+github.com/Portshift/dockle v0.3.2-0.20201209120419-73bf391e28b0 h1:tZuYFcibdF7wiB00LrVBZcNAOKW/6mpois3BtBVi340=
+github.com/Portshift/dockle v0.3.2-0.20201209120419-73bf391e28b0/go.mod h1:5wZk3T5uw7bqyyIynaMot4PUqWyqIgyY8IIgnnUmSTM=
 github.com/Portshift/klar v1.9.10-0.20201118172109-371310ea259d h1:4NuajDK9kwUPN5KjGe1EvBaG5m2M5nreQ+/zPJMyhHE=
 github.com/Portshift/klar v1.9.10-0.20201118172109-371310ea259d/go.mod h1:BVPXethETeq6dYE/WjN8BRAu72fdABZyb4MbkjMbry0=
+github.com/Portshift/klar v1.9.10-0.20201209120737-f2aa063f3cdb h1:4qnHPInKBF4qySHp9lD04Ni7JhwYpNVTzmeKq/jEUI0=
+github.com/Portshift/klar v1.9.10-0.20201209120737-f2aa063f3cdb/go.mod h1:BVPXethETeq6dYE/WjN8BRAu72fdABZyb4MbkjMbry0=
 github.com/PuerkitoBio/purell v1.0.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
 github.com/PuerkitoBio/purell v1.1.0/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=
 github.com/PuerkitoBio/purell v1.1.1/go.mod h1:c11w/QuzBsJSee3cPx9rAFu61PvFxuPbtSwDGJws/X0=

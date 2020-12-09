@@ -10,6 +10,7 @@ import (
 	stringutils "github.com/Portshift/kubei/pkg/utils/string"
 	"github.com/containers/image/v5/docker/reference"
 	uuid "github.com/satori/go.uuid"
+	"github.com/Portshift/kubei/pkg/types"
 	log "github.com/sirupsen/logrus"
 	batchv1 "k8s.io/api/batch/v1"
 	corev1 "k8s.io/api/core/v1"
@@ -92,11 +93,11 @@ func (s *Scanner) worker(queue chan *scanData, worknumber int, done, ks chan boo
 		case data := <-queue:
 			job, err := s.runJob(data)
 			if err != nil {
-				errStr := fmt.Sprintf("failed to run job: %v", err)
-				log.WithFields(s.logFields).Errorf(errStr)
+				errMsg := fmt.Errorf("failed to run job: %v. %w", err, types.ErrorJobRun)
+				log.WithFields(s.logFields).Error(errMsg)
 				s.Lock()
 				data.success = false
-				data.scanErrMsg = errStr
+				data.scanErr = errMsg
 				data.completed = true
 				s.Unlock()
 			} else {
@@ -124,11 +125,11 @@ func (s *Scanner) waitForResult(data *scanData, ks chan bool) {
 	case <-data.resultChan:
 		log.WithFields(s.logFields).Infof("Image scanned result has arrived. image=%v", data.imageName)
 	case <-ticker.C:
-		errStr := fmt.Sprintf("job was timeout. image=%v", data.imageName)
-		log.WithFields(s.logFields).Warnf(errStr)
+		errMsg := fmt.Errorf("job was timeout. image=%v. %w", data.imageName, types.ErrorScanTimeout)
+		log.WithFields(s.logFields).Warn(errMsg)
 		s.Lock()
 		data.success = false
-		data.scanErrMsg = errStr
+		data.scanErr = errMsg
 		data.timeout = true
 		data.completed = true
 		s.Unlock()

@@ -20,7 +20,7 @@ type Orchestrator struct {
 	config    *config.Config
 	clientset kubernetes.Interface
 	server    *http.Server
-	sync.Mutex
+	 sync.Mutex
 }
 
 type VulnerabilitiesScanner interface {

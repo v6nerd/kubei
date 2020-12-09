@@ -1,6 +1,7 @@
 package types
 
 import (
+	"errors"
 	"github.com/Portshift/klar/clair"
 	dockle_types "github.com/Portshift/dockle/pkg/types"
 )
@@ -21,10 +22,27 @@ type ImageScanResult struct {
 	Vulnerabilities       []*clair.Vulnerability
 	DockerfileScanResults dockle_types.AssessmentMap
 	Success               bool
-	ScanErrMsg            string
+	ScanErrors            []*ScanErrMsg
 }
 
 type ScanResults struct {
 	ImageScanResults []*ImageScanResult
 	Progress         ScanProgress
 }
+
+type ScanErrorSource string
+
+const (
+	ScanErrSourceDockle ScanErrorSource = "ScanErrSourceDockle"
+	ScanErrSourceVul    ScanErrorSource = "ScanErrSourceVulnerability"
+	ScanErrSourceJob    ScanErrorSource = "ScanErrSourceJob"
+)
+
+type ScanErrMsg struct {
+	Error         error
+	ScanErrSource ScanErrorSource
+}
+
+var ErrorUnauthorized = errors.New("unauthorized")
+var ErrorJobRun = errors.New("failed to run job")
+var ErrorScanTimeout = errors.New("job timed out")
